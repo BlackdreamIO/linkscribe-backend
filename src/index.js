@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 import compression from "compression";
 import router from "./router/router.js";
+import { userSubscirptionMiddleware } from "./middlewere/userSubscirptionMiddleware.js";
 
-const allowedOrigins = ["*", "http://localhost:5173"];
+const allowedOrigins = ["*", "http://localhost:5173", "http://localhost:3000"];
 const port = 5000;
 
 const corsOptions = {
@@ -21,7 +22,8 @@ const corsOptions = {
 const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(compression());
+//app.use(compression());
+//app.use(userSubscirptionMiddleware);
 app.use('/', router)
 
 app.listen(port, () => {
